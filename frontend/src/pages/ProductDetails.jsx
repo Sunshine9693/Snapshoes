@@ -344,10 +344,10 @@ export default function ProductDetails() {
                     key={sz}
                     onClick={() => setSelectedSize(sz)}
                     className={`min-w-[48px] h-[48px] rounded-xl border text-sm font-bold transition-all duration-200 ${
-                      selectedSize === sz
-                        ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-md"
-                        : "bg-[#FFFFFF] text-[#1C1C1C] border-[#D8D1C7] hover:bg-[#1C1C1C] hover:text-white hover:border-[#1C1C1C]"
-                    }`}
+  selectedSize === sz
+    ? "bg-[#1C1C1C] text-white border-[#1C1C1C] shadow-md"
+    : "bg-[#FFFFFF] text-[#1C1C1C] border-[#D8D1C7] hover:bg-[#1C1C1C] hover:text-white hover:border-[#1C1C1C]"
+}`}
                   >
                     {sz}
                   </button>
