@@ -124,9 +124,26 @@ export const AppProvider = ({ children }) => {
       setToken(res.data.token);
       setUser(res.data.user);
       addToast(`Welcome back, ${res.data.user.name}!`, 'success');
-      return { success: true };
+      return { success: true, user: res.data.user };
     } catch (err) {
       const msg = err.response?.data?.message || 'Login failed';
+      addToast(msg, 'error');
+      return { success: false, message: msg };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const adminLogin = async (email, password) => {
+    setLoading(true);
+    try {
+      const res = await axios.post('/auth/admin-login', { email, password });
+      setToken(res.data.token);
+      setUser(res.data.user);
+      addToast(`Welcome back, ${res.data.user.name}!`, 'success');
+      return { success: true, user: res.data.user };
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Invalid admin credentials';
       addToast(msg, 'error');
       return { success: false, message: msg };
     } finally {
@@ -271,6 +288,7 @@ export const AppProvider = ({ children }) => {
         loading,
         setLoading,
         login,
+        adminLogin,
         register,
         logout,
         addToCart,
